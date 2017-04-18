@@ -19,7 +19,7 @@ module.exports = function(cmd_options, callback) {
         "open":            /Encryption key:(off)/,
     };
 
-    exec("sudo iwlist scan", function(error, stdout, stderr) {
+    exec("sudo iw dev wlan0 scan ap-force | gawk -f parseIW.awk", function(error, stdout, stderr) {
         // Handle errors from running "iwlist scan"
         if (error) {
             return callback(error, output)
